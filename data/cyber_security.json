@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is Cyber Security?",
+    "keywords": ["cyber security", "security", "protection", "computer"],
+    "correct_answer": "Cyber Security is the practice of protecting computers, networks, and data from cyber attacks."
+  },
+  {
+    "question": "What is a Firewall?",
+    "keywords": ["firewall", "network", "security"],
+    "correct_answer": "A Firewall is a security system that monitors and controls incoming and outgoing network traffic."
+  },
+  {
+    "question": "What is Malware?",
+    "keywords": ["malware", "virus", "trojan", "worm"],
+    "correct_answer": "Malware is malicious software designed to damage or gain unauthorized access to computer systems."
+  },
+  {
+    "question": "What is Phishing?",
+    "keywords": ["phishing", "email", "fraud"],
+    "correct_answer": "Phishing is a cyber attack where attackers trick users into revealing sensitive information."
+  },
+  {
+    "question": "What is Encryption?",
+    "keywords": ["encryption", "data", "security"],
+    "correct_answer": "Encryption converts readable data into an unreadable format to protect it from unauthorized access."
+  },
+  {
+    "question": "What is Authentication?",
+    "keywords": ["authentication", "login", "identity"],
+    "correct_answer": "Authentication is the process of verifying the identity of a user."
+  },
+  {
+    "question": "What is VPN?",
+    "keywords": ["vpn", "private", "network"],
+    "correct_answer": "A VPN (Virtual Private Network) creates a secure encrypted connection over the internet."
+  },
+  {
+    "question": "What is Two-Factor Authentication?",
+    "keywords": ["2fa", "two factor", "authentication"],
+    "correct_answer": "Two-Factor Authentication (2FA) provides an additional layer of security by requiring two verification methods."
+  },
+  {
+    "question": "What is SQL Injection?",
+    "keywords": ["sql injection", "database", "attack"],
+    "correct_answer": "SQL Injection is a cyber attack that inserts malicious SQL queries into an application's database."
+  },
+  {
+    "question": "What is Ethical Hacking?",
+    "keywords": ["ethical hacking", "penetration", "security"],
+    "correct_answer": "Ethical Hacking is the legal practice of testing systems for security vulnerabilities."
+  }
+]

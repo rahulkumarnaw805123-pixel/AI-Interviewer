@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script type="module">
+    import { Streamlit, withStreamlitConnection } from "https://unpkg.com/streamlit-component-lib@2.0.0/dist/index.js";
+
+    const root = document.getElementById("root");
+    let recording = false;
+    let stream = null;
+    let audioContext = null;
+    let source = null;
+    let processor = null;
+    let chunks = [];
+    let sampleRate = 44100;
+    let recordingId = 0;
+
+    root.innerHTML = `
+      <div class="recorder-wrap">
+        <button id="mic" class="mic-btn" title="Start voice answer" aria-label="Start voice answer">
+          <span class="mic-icon">🎙</span>
+        </button>
+        <div id="wave" class="wave" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div id="status" class="status">Ready</div>
+      </div>`;
+
+    const mic = document.getElementById("mic");
+    const wave = document.getElementById("wave");
+    const status = document.getElementById("status");
+
+    function setRecordingUI(active) {
+      recording = active;
+      mic.classList.toggle("recording", active);
+      wave.classList.toggle("active", active);
+      status.textContent = active ? "Listening… Speak now" : "Ready";
+      mic.title = active ? "Stop voice answer" : "Start voice answer";
+      mic.setAttribute("aria-label", active ? "Stop voice answer" : "Start voice answer");
+      mic.innerHTML = active ? '<span class="stop-icon"></span>' : '<span class="mic-icon">🎙</span>';
+    }
+
+    function mergeFloat32(list) {
+      let length = 0;
+      for (const a of list) length += a.length;
+      const out = new Float32Array(length);
+      let offset = 0;
+      for (const a of list) { out.set(a, offset); offset += a.length; }
+      return out;
+    }
+
+    function encodeWav(samples, rate) {
+      const buffer = new ArrayBuffer(44 + samples.length * 2);
+      const view = new DataView(buffer);
+      const writeString = (offset, text) => {
+        for (let i = 0; i < text.length; i++) view.setUint8(offset + i, text.charCodeAt(i));
+      };
+      const clamp = v => Math.max(-1, Math.min(1, v));
+      writeString(0, "RIFF");
+      view.setUint32(4, 36 + samples.length * 2, true);
+      writeString(8, "WAVE");
+      writeString(12, "fmt ");
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, rate, true);
+      view.setUint32(28, rate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeString(36, "data");
+      view.setUint32(40, samples.length * 2, true);
+      let offset = 44;
+      for (let i = 0; i < samples.length; i++) {
+        const s = clamp(samples[i]);
+        view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+        offset += 2;
+      }
+      return new Uint8Array(buffer);
+    }
+
+    function bytesToBase64(bytes) {
+      let binary = "";
+      const chunk = 0x8000;
+      for (let i = 0; i < bytes.length; i += chunk) {
+        binary += String.fromCharCode(...bytes.subarray(i, Math.min(i + chunk, bytes.length)));
+      }
+      return btoa(binary);
+    }
+
+    async function startRecording() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1 } });
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        sampleRate = audioContext.sampleRate;
+        source = audioContext.createMediaStreamSource(stream);
+        processor = audioContext.createScriptProcessor(4096, 1, 1);
+        chunks = [];
+        processor.onaudioprocess = e => {
+          if (recording) chunks.push(new Float32Array(e.inputBuffer.getChannelData(0)));
+        };
+        source.connect(processor);
+        processor.connect(audioContext.destination);
+        setRecordingUI(true);
+      } catch (err) {
+        setRecordingUI(false);
+        status.textContent = "Microphone permission required";
+        Streamlit.setComponentValue({ event: "error", message: String(err) });
+      }
+    }
+
+    async function stopRecording() {
+      setRecordingUI(false);
+      try {
+        if (processor) processor.disconnect();
+        if (source) source.disconnect();
+        if (stream) stream.getTracks().forEach(t => t.stop());
+        if (audioContext) await audioContext.close();
+
+        const samples = mergeFloat32(chunks);
+        if (!samples.length) {
+          Streamlit.setComponentValue({ event: "error", message: "No audio was captured." });
+          return;
+        }
+        const wav = encodeWav(samples, sampleRate);
+        recordingId += 1;
+        Streamlit.setComponentValue({
+          event: "recorded",
+          id: recordingId,
+          audio_base64: bytesToBase64(wav),
+          sample_rate: sampleRate,
+          sample_width: 2,
+          channels: 1
+        });
+      } catch (err) {
+        Streamlit.setComponentValue({ event: "error", message: String(err) });
+      } finally {
+        processor = null; source = null; stream = null; audioContext = null; chunks = [];
+      }
+    }
+
+    mic.addEventListener("click", () => recording ? stopRecording() : startRecording());
+
+    Streamlit.setFrameHeight(78);
+    window.addEventListener("resize", () => Streamlit.setFrameHeight(78));
+    withStreamlitConnection(() => {});
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:transparent; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .recorder-wrap { height:78px; width:100%; display:flex; align-items:center; gap:18px; padding:7px 10px; }
+    .mic-btn {
+      width:54px; height:54px; min-width:54px; border:0; border-radius:50%; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; color:white;
+      background:linear-gradient(135deg,#7c3aed,#2563eb);
+      box-shadow:0 8px 22px rgba(37,99,235,.28),0 0 0 4px rgba(124,58,237,.10);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+      font-size:25px; outline:none;
+    }
+    .mic-btn:hover { transform:translateY(-1px) scale(1.03); box-shadow:0 10px 26px rgba(37,99,235,.34),0 0 0 5px rgba(124,58,237,.12); }
+    .mic-btn.recording { background:linear-gradient(135deg,#ef4444,#dc2626); box-shadow:0 8px 24px rgba(220,38,38,.28),0 0 0 5px rgba(239,68,68,.10); }
+    .stop-icon { width:17px; height:17px; border-radius:4px; background:#fff; display:block; }
+    .wave { flex:1; height:54px; display:flex; align-items:center; gap:3px; opacity:0; transform:translateY(3px); transition:opacity .18s ease; overflow:hidden; }
+    .wave.active { opacity:1; }
+    .wave i { display:block; width:4px; height:12px; border-radius:99px; background:linear-gradient(180deg,#a855f7,#2563eb); animation:wave .78s ease-in-out infinite; transform-origin:center; }
+    .wave i:nth-child(2n){animation-delay:.08s}.wave i:nth-child(3n){animation-delay:.16s}.wave i:nth-child(4n){animation-delay:.24s}.wave i:nth-child(5n){animation-delay:.32s}
+    @keyframes wave { 0%,100%{height:8px;opacity:.55} 50%{height:38px;opacity:1} }
+    .status { min-width:135px; color:#64748b; font-size:12px; font-weight:600; white-space:nowrap; }
+    @media (max-width:700px){ .status{display:none}.recorder-wrap{gap:10px}.wave{gap:2px} }
+  </style>
+</head>
+<body><div id="root"></div></body>
+</html>

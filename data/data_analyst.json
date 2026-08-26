@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Who is a Data Analyst?",
+    "keywords": ["data analyst", "analyze", "data", "business", "insights"],
+    "correct_answer": "A Data Analyst collects, cleans, analyzes, and visualizes data to help organizations make better business decisions."
+  },
+  {
+    "question": "What is Data Analysis?",
+    "keywords": ["data", "analysis", "clean", "transform", "analyze", "decision"],
+    "correct_answer": "Data Analysis is the process of collecting, cleaning, transforming, and analyzing data to discover useful information and support decision-making."
+  },
+  {
+    "question": "What is Data Cleaning?",
+    "keywords": ["cleaning", "missing", "duplicate", "incorrect", "data"],
+    "correct_answer": "Data Cleaning is the process of removing missing, duplicate, inconsistent, or incorrect data to improve data quality."
+  },
+  {
+    "question": "What is Excel used for in Data Analysis?",
+    "keywords": ["excel", "pivot", "chart", "analysis", "data"],
+    "correct_answer": "Excel is used for data cleaning, sorting, filtering, Pivot Tables, charts, formulas, and dashboard creation."
+  },
+  {
+    "question": "What is SQL used for in Data Analysis?",
+    "keywords": ["sql", "database", "query", "retrieve", "analysis"],
+    "correct_answer": "SQL is used to retrieve, filter, join, aggregate, and analyze data stored in relational databases."
+  },
+  {
+    "question": "What is Data Visualization?",
+    "keywords": ["visualization", "charts", "graphs", "dashboard"],
+    "correct_answer": "Data Visualization is the graphical representation of data using charts, graphs, and dashboards."
+  },
+  {
+    "question": "What is Power BI?",
+    "keywords": ["power bi", "dashboard", "visualization", "microsoft"],
+    "correct_answer": "Power BI is Microsoft's Business Intelligence tool used to create interactive reports and dashboards."
+  },
+  {
+    "question": "What is KPI?",
+    "keywords": ["kpi", "performance", "indicator", "metric"],
+    "correct_answer": "KPI stands for Key Performance Indicator. It is a measurable value used to evaluate performance."
+  },
+  {
+    "question": "What is ETL?",
+    "keywords": ["etl", "extract", "transform", "load"],
+    "correct_answer": "ETL stands for Extract, Transform, and Load. It is the process of moving data from one source to another after transforming it."
+  },
+  {
+    "question": "Why is Data Analysis important?",
+    "keywords": ["decision", "business", "insights", "analysis"],
+    "correct_answer": "Data Analysis helps organizations make informed decisions, identify trends, improve performance, and solve business problems."
+  }
+]

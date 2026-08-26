@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is Python?",
+    "keywords": ["python", "programming", "language", "interpreted", "high-level"],
+    "correct_answer": "Python is a high-level, interpreted, object-oriented programming language used for web development, data science, AI, automation, and many other applications."
+  },
+  {
+    "question": "What is a variable?",
+    "keywords": ["variable", "memory", "store", "value", "data", "named"],
+    "correct_answer": "A variable is a named memory location used to store data that can be changed during program execution."
+  },
+  {
+    "question": "What is a data type?",
+    "keywords": ["data type", "int", "float", "string", "bool", "type"],
+    "correct_answer": "A data type defines the kind of value a variable can store, such as int, float, string, boolean, list, tuple, dictionary, etc."
+  },
+  {
+    "question": "What is a list?",
+    "keywords": ["list", "ordered", "mutable", "collection"],
+    "correct_answer": "A list is an ordered and mutable collection used to store multiple values."
+  },
+  {
+    "question": "What is a tuple?",
+    "keywords": ["tuple", "ordered", "immutable"],
+    "correct_answer": "A tuple is an ordered and immutable collection of elements."
+  },
+  {
+    "question": "What is a dictionary?",
+    "keywords": ["dictionary", "key", "value", "pair"],
+    "correct_answer": "A dictionary stores data in key-value pairs."
+  },
+  {
+    "question": "What is a function?",
+    "keywords": ["function", "reuse", "code", "def"],
+    "correct_answer": "A function is a reusable block of code that performs a specific task."
+  },
+  {
+    "question": "What is a loop?",
+    "keywords": ["loop", "for", "while", "repeat", "iteration"],
+    "correct_answer": "A loop repeatedly executes a block of code until a condition is met."
+  },
+  {
+    "question": "What is OOP?",
+    "keywords": ["object", "class", "oop", "inheritance", "polymorphism", "encapsulation"],
+    "correct_answer": "Object-Oriented Programming (OOP) is a programming paradigm based on classes and objects, supporting inheritance, encapsulation, polymorphism, and abstraction."
+  },
+  {
+    "question": "What is exception handling?",
+    "keywords": ["try", "except", "error", "exception"],
+    "correct_answer": "Exception handling is used to handle runtime errors using try and except blocks."
+  }
+]

@@ -1,0 +1,79 @@
+{
+  "Python": [
+    "What is Python?",
+    "What is a variable?",
+    "What are data types in Python?",
+    "What is the difference between List and Tuple?",
+    "What is a Dictionary in Python?",
+    "What is a Function?",
+    "What is Object-Oriented Programming (OOP)?",
+    "What is Inheritance in Python?",
+    "What is Exception Handling?",
+    "What is a Module in Python?"
+  ],
+
+  "SQL": [
+    "What is SQL?",
+    "What is the difference between WHERE and HAVING?",
+    "What is the difference between DELETE, DROP, and TRUNCATE?",
+    "What is a Primary Key?",
+    "What is a Foreign Key?",
+    "What is JOIN in SQL?",
+    "What is the GROUP BY clause?",
+    "What are Aggregate Functions?",
+    "What is a Subquery?",
+    "What is a View in SQL?"
+  ],
+
+  "Data Analyst": [
+    "What is Data Analysis?",
+    "What is the difference between Data Analysis and Data Analytics?",
+    "What is Excel used for in Data Analysis?",
+    "What is SQL used for in Data Analysis?",
+    "What is Power BI?",
+    "What is Data Cleaning?",
+    "What is Data Visualization?",
+    "What is KPI?",
+    "What is Dashboard?",
+    "What are the responsibilities of a Data Analyst?"
+  ],
+
+  "Data Science": [
+    "What is Data Science?",
+    "What is Machine Learning?",
+    "What is Artificial Intelligence?",
+    "What is Data Cleaning?",
+    "What is Supervised Learning?",
+    "What is Unsupervised Learning?",
+    "What is Overfitting?",
+    "What is Underfitting?",
+    "What is Feature Engineering?",
+    "What is Data Visualization?"
+  ],
+
+  "Software Engineering": [
+    "What is Software Engineering?",
+    "What is SDLC?",
+    "What are the phases of SDLC?",
+    "What is Agile Methodology?",
+    "What is Waterfall Model?",
+    "What is Version Control?",
+    "What is Git?",
+    "What is GitHub?",
+    "What is Testing?",
+    "What is Debugging?"
+  ],
+
+  "Cyber Security": [
+    "What is Cyber Security?",
+    "What is a Firewall?",
+    "What is Encryption?",
+    "What is a Virus?",
+    "What is Malware?",
+    "What is Phishing?",
+    "What is Ransomware?",
+    "What is Two-Factor Authentication?",
+    "What is VPN?",
+    "What is Ethical Hacking?"
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is SQL?",
+    "keywords": ["sql", "structured", "query", "language", "database"],
+    "correct_answer": "SQL (Structured Query Language) is used to create, manage, and retrieve data from relational databases."
+  },
+  {
+    "question": "What is a Database?",
+    "keywords": ["database", "data", "collection", "storage"],
+    "correct_answer": "A database is an organized collection of related data that can be stored, managed, and accessed efficiently."
+  },
+  {
+    "question": "What is a Primary Key?",
+    "keywords": ["primary", "key", "unique", "identifier"],
+    "correct_answer": "A Primary Key is a column that uniquely identifies each record in a table. It cannot contain NULL or duplicate values."
+  },
+  {
+    "question": "What is a Foreign Key?",
+    "keywords": ["foreign", "key", "relationship", "reference"],
+    "correct_answer": "A Foreign Key is a column that creates a relationship between two tables by referencing the Primary Key of another table."
+  },
+  {
+    "question": "What is the difference between WHERE and HAVING?",
+    "keywords": ["where", "having", "group", "filter"],
+    "correct_answer": "WHERE filters rows before grouping, while HAVING filters groups after the GROUP BY clause."
+  },
+  {
+    "question": "What is JOIN?",
+    "keywords": ["join", "tables", "combine"],
+    "correct_answer": "JOIN is used to combine rows from two or more tables based on a related column."
+  },
+  {
+    "question": "What are the types of JOIN?",
+    "keywords": ["inner", "left", "right", "full", "join"],
+    "correct_answer": "The main types of JOIN are INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN."
+  },
+  {
+    "question": "What is GROUP BY?",
+    "keywords": ["group", "aggregate", "group by"],
+    "correct_answer": "GROUP BY groups rows that have the same values so aggregate functions like COUNT, SUM, AVG, MAX, and MIN can be applied."
+  },
+  {
+    "question": "What is a View?",
+    "keywords": ["view", "virtual", "table"],
+    "correct_answer": "A View is a virtual table created from the result of an SQL query."
+  },
+  {
+    "question": "What is Normalization?",
+    "keywords": ["normalization", "redundancy", "duplicate", "database"],
+    "correct_answer": "Normalization is the process of organizing database tables to reduce redundancy and improve data integrity."
+  }
+]

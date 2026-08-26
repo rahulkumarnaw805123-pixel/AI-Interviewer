@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is Data Science?",
+    "keywords": ["data science", "data", "analysis", "machine learning", "statistics"],
+    "correct_answer": "Data Science is the field of extracting useful insights from data using statistics, programming, and machine learning."
+  },
+  {
+    "question": "What is Machine Learning?",
+    "keywords": ["machine learning", "algorithm", "prediction", "model"],
+    "correct_answer": "Machine Learning is a branch of AI that enables computers to learn from data without being explicitly programmed."
+  },
+  {
+    "question": "What is Artificial Intelligence?",
+    "keywords": ["artificial intelligence", "ai", "intelligence", "computer"],
+    "correct_answer": "Artificial Intelligence is the simulation of human intelligence in machines."
+  },
+  {
+    "question": "What is Supervised Learning?",
+    "keywords": ["supervised", "labeled", "training"],
+    "correct_answer": "Supervised Learning is a machine learning technique where models are trained using labeled data."
+  },
+  {
+    "question": "What is Unsupervised Learning?",
+    "keywords": ["unsupervised", "clustering", "unlabeled"],
+    "correct_answer": "Unsupervised Learning finds hidden patterns in unlabeled data."
+  },
+  {
+    "question": "What is Deep Learning?",
+    "keywords": ["deep learning", "neural network"],
+    "correct_answer": "Deep Learning is a subset of machine learning based on artificial neural networks."
+  },
+  {
+    "question": "What is Feature Engineering?",
+    "keywords": ["feature", "engineering", "data"],
+    "correct_answer": "Feature Engineering is the process of selecting and transforming variables to improve model performance."
+  },
+  {
+    "question": "What is Model Training?",
+    "keywords": ["model", "training", "learn"],
+    "correct_answer": "Model Training is the process of teaching an algorithm using training data."
+  },
+  {
+    "question": "What is Overfitting?",
+    "keywords": ["overfitting", "training", "testing"],
+    "correct_answer": "Overfitting occurs when a model performs well on training data but poorly on unseen data."
+  },
+  {
+    "question": "What is Pandas?",
+    "keywords": ["pandas", "python", "dataframe"],
+    "correct_answer": "Pandas is a Python library used for data manipulation and analysis."
+  }
+]

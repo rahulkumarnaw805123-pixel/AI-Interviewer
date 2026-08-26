@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="UTF-8">
+<script>
+/* Local Streamlit component bridge - no CDN/internet required. */
+const Streamlit = (() => {
+  const API_VERSION = 1;
+  const RENDER_EVENT = "streamlit:render";
+  const events = new EventTarget();
+  let lastHeight = null;
+  let listeningForRender = false;
+  function send(type, data) {
+    window.parent.postMessage(Object.assign({isStreamlitMessage:true, type:type}, data || {}), "*");
+  }
+  function onMessage(event) {
+    if (event.data && event.data.type === RENDER_EVENT) {
+      events.dispatchEvent(new CustomEvent(RENDER_EVENT, {detail:event.data}));
+    }
+  }
+  function setComponentReady() {
+    if (!listeningForRender) {
+      window.addEventListener("message", onMessage);
+      listeningForRender = true;
+    }
+    send("streamlit:componentReady", {apiVersion:API_VERSION});
+  }
+  function setFrameHeight(height) {
+    if (height === lastHeight) return;
+    lastHeight = height;
+    send("streamlit:setFrameHeight", {height:height});
+  }
+  function setComponentValue(value) {
+    send("streamlit:setComponentValue", {value:value, dataType:"json"});
+  }
+  return {API_VERSION, RENDER_EVENT, events, setComponentReady, setFrameHeight, setComponentValue};
+})();
+</script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:transparent;font-family:Inter,Arial,sans-serif}
+.wrap{width:100%;display:flex;align-items:center;gap:18px;padding:10px 8px;min-height:76px}
+.mic{width:54px;height:54px;min-width:54px;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:24px;background:linear-gradient(135deg,#7c3aed,#2563eb);box-shadow:0 8px 22px rgba(37,99,235,.24),0 0 0 5px rgba(124,58,237,.08);transition:.2s}
+.mic:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(37,99,235,.30),0 0 0 6px rgba(124,58,237,.10)}
+.mic.listening{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 8px 22px rgba(220,38,38,.25),0 0 0 7px rgba(239,68,68,.10)}
+.mic .stop{width:16px;height:16px;border-radius:4px;background:#fff;display:block}.mic .micon{font-size:23px;line-height:1}
+.status{font-size:13px;font-weight:700;color:#475569;min-width:92px;white-space:nowrap}
+.wave{height:42px;display:flex;align-items:center;gap:3px;flex:1;overflow:hidden;opacity:0;transition:opacity .2s}.wave.on{opacity:1}
+.bar{width:3px;height:10px;border-radius:8px;background:linear-gradient(180deg,#7c3aed,#2563eb);transform-origin:center;animation:none}.wave.on .bar{animation:wave .85s ease-in-out infinite}
+.bar:nth-child(2){animation-delay:.07s}.bar:nth-child(3){animation-delay:.14s}.bar:nth-child(4){animation-delay:.21s}.bar:nth-child(5){animation-delay:.28s}.bar:nth-child(6){animation-delay:.35s}.bar:nth-child(7){animation-delay:.42s}.bar:nth-child(8){animation-delay:.49s}.bar:nth-child(9){animation-delay:.56s}.bar:nth-child(10){animation-delay:.63s}.bar:nth-child(11){animation-delay:.70s}.bar:nth-child(12){animation-delay:.77s}
+@keyframes wave{0%,100%{transform:scaleY(.35);opacity:.45}50%{transform:scaleY(2.7);opacity:1}}
+</style></head><body>
+<div class="wrap"><button id="mic" class="mic" title="Start voice answer" aria-label="Start voice answer"><span class="micon">🎙</span></button><div id="status" class="status">Voice input</div><div id="wave" class="wave"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div></div>
+<script>
+const Streamlit=window.Streamlit,mic=document.getElementById('mic'),wave=document.getElementById('wave'),statusEl=document.getElementById('status');
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let recognition=null,listening=false,finalText='',eventId=0,lastSent='';
+function send(v){const sig=JSON.stringify(v);if(sig!==lastSent){lastSent=sig;Streamlit.setComponentValue(v)}}
+function setListening(on){listening=on;mic.classList.toggle('listening',on);mic.innerHTML=on?'<span class="stop"></span>':'<span class="micon">🎙</span>';mic.title=on?'Stop voice answer':'Start voice answer';statusEl.textContent=on?'Listening…':'Voice input';wave.classList.toggle('on',on)}
+function start(){if(!SR){send({listening:false,text:'',event_id:++eventId,error:'Speech recognition is not supported. Please use Chrome or Edge.'});return}finalText='';recognition=new SR();recognition.lang='en-IN';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=1;recognition.onstart=()=>{setListening(true);send({listening:true,text:'',event_id:++eventId,error:''})};recognition.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)finalText+=t+' ';else interim+=t}send({listening:true,text:(finalText+interim).trim(),event_id:eventId,error:''})};recognition.onerror=e=>{const msg=e.error==='not-allowed'?'Microphone permission was blocked. Allow microphone access and try again.':'Voice recognition failed: '+e.error;setListening(false);send({listening:false,text:finalText.trim(),event_id:++eventId,error:msg})};recognition.onend=()=>{if(listening){try{recognition.start();return}catch(e){}}setListening(false);send({listening:false,text:finalText.trim(),event_id:++eventId,error:''})};try{recognition.start()}catch(e){setListening(false);send({listening:false,text:'',event_id:++eventId,error:String(e)})}}
+function stop(){listening=false;setListening(false);if(recognition){try{recognition.stop()}catch(e){}}send({listening:false,text:finalText.trim(),event_id:++eventId,error:''})}
+mic.addEventListener('click',()=>listening?stop():start());Streamlit.setComponentReady();Streamlit.setFrameHeight(76);Streamlit.events.addEventListener(Streamlit.RENDER_EVENT,()=>Streamlit.setFrameHeight(76));
+</script></body></html>

@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is Software Engineering?",
+    "keywords": ["software engineering", "development", "software", "engineering"],
+    "correct_answer": "Software Engineering is the systematic process of designing, developing, testing, deploying, and maintaining software."
+  },
+  {
+    "question": "What is SDLC?",
+    "keywords": ["sdlc", "software development life cycle", "planning", "design"],
+    "correct_answer": "SDLC stands for Software Development Life Cycle. It includes planning, analysis, design, implementation, testing, deployment, and maintenance."
+  },
+  {
+    "question": "What is Requirement Analysis?",
+    "keywords": ["requirement", "analysis", "customer", "needs"],
+    "correct_answer": "Requirement Analysis is the process of understanding and documenting customer requirements."
+  },
+  {
+    "question": "What is Software Testing?",
+    "keywords": ["testing", "bug", "quality", "software"],
+    "correct_answer": "Software Testing is the process of identifying bugs and ensuring software quality."
+  },
+  {
+    "question": "What is Agile Model?",
+    "keywords": ["agile", "iteration", "sprint"],
+    "correct_answer": "Agile is an iterative software development methodology based on collaboration, customer feedback, and continuous improvement."
+  },
+  {
+    "question": "What is Waterfall Model?",
+    "keywords": ["waterfall", "sequential", "phases"],
+    "correct_answer": "Waterfall is a sequential software development model where each phase is completed before the next begins."
+  },
+  {
+    "question": "What is Version Control?",
+    "keywords": ["version control", "git", "github"],
+    "correct_answer": "Version Control is a system that tracks changes in source code. Git is the most widely used version control system."
+  },
+  {
+    "question": "What is Debugging?",
+    "keywords": ["debugging", "bug", "fix"],
+    "correct_answer": "Debugging is the process of finding and fixing errors in software."
+  },
+  {
+    "question": "What is Maintenance?",
+    "keywords": ["maintenance", "update", "software"],
+    "correct_answer": "Software Maintenance involves updating, fixing, and improving software after deployment."
+  },
+  {
+    "question": "What is UML?",
+    "keywords": ["uml", "diagram", "model"],
+    "correct_answer": "UML (Unified Modeling Language) is used to visualize and design software systems."
+  }
+]
