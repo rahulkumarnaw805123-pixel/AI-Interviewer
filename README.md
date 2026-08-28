@@ -103,3 +103,18 @@ AI-Interviewer/
 ├── questions.json
 ├── requirements.txt
 └── .gitignore
+---
+
+## 🖥️ Application Screenshots
+
+### 1. Candidate Setup
+
+![Candidate Setup](screenshots/AI_Interviewer_Setup_Combined.jpg)
+
+### 2. Interview
+
+![Interview](screenshots/AI_Interviewer_Interview_Combined.jpg)
+
+### 3. AI Evaluation
+
+![AI Evaluation](screenshots/AI_Interviewer_Evaluation_Combined.jpg)
