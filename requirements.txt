@@ -6,3 +6,4 @@ python-dotenv
 reportlab
 google-genai
 edge-tts
+streamlit-mic-recorder
