@@ -228,7 +228,53 @@ div[data-testid="stCustomComponentV1"] {
     margin-top:-8px;
     margin-bottom:6px;
 }
+/* ===== FIX MAIN CONTENT TEXT VISIBILITY ===== */
 
+[data-testid="stAppViewContainer"] .main {
+    color: #0f172a !important;
+}
+
+[data-testid="stAppViewContainer"] .main
+[data-testid="stMarkdownContainer"] {
+    color: #0f172a !important;
+}
+
+/* Normal headings and paragraphs */
+[data-testid="stAppViewContainer"] .main h1,
+[data-testid="stAppViewContainer"] .main h2,
+[data-testid="stAppViewContainer"] .main h3,
+[data-testid="stAppViewContainer"] .main h4,
+[data-testid="stAppViewContainer"] .main p,
+[data-testid="stAppViewContainer"] .main li {
+    color: #0f172a !important;
+}
+
+/* AI Evaluation result */
+[data-testid="stAppViewContainer"] .main
+[data-testid="stMarkdownContainer"] p {
+    color: #0f172a !important;
+}
+
+/* Keep AI voice panel white */
+.ai-voice-panel,
+.ai-voice-panel * {
+    color: white !important;
+}
+
+.ai-voice-status {
+    color: #bfdbfe !important;
+}
+
+/* Keep sidebar white */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] * {
+    color: #f8fafc !important;
+}
+
+/* Success / warning messages */
+[data-testid="stAlert"] p {
+    color: inherit !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
