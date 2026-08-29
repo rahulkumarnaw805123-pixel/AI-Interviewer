@@ -656,23 +656,31 @@ if st.session_state.interview_started and not st.session_state.interview_complet
 
             # ---------------- AI EVALUATION DISPLAY ----------------
 
-            with st.container(border=True):
-
-                st.markdown(
-                    """
-                    <h3 style="
-                        color:#0f172a !important;
-                        margin-top:0;
-                        margin-bottom:18px;
+            st.markdown(
+                """
+                <div style="
+                    background:#ffffff;
+                    border:1px solid #dbeafe;
+                    border-radius:18px;
+                    padding:22px;
+                    margin-top:18px;
+                    margin-bottom:20px;
+                    color:#111827;
+                ">
+                    <div style="
+                        font-size:20px;
+                        font-weight:800;
+                        color:#111827;
+                        margin-bottom:16px;
                     ">
                         🤖 AI Evaluation
-                    </h3>
-                    """,
-                    unsafe_allow_html=True
-                )
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-                # Render AI response as Markdown
-                st.markdown(result)
+            st.markdown(result)
 
     if next_q:
         if len(st.session_state.results) <= q_no:
