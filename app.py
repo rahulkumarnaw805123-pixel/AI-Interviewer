@@ -654,10 +654,41 @@ if st.session_state.interview_started and not st.session_state.interview_complet
                 )
                 st.session_state.evaluation_spoken = q_no
 
-            st.markdown('<div class="card">', unsafe_allow_html=True)
-            st.markdown("### 🤖 AI Evaluation")
-            st.markdown(result)
-            st.markdown("</div>", unsafe_allow_html=True)
+            # ---------------- AI EVALUATION DISPLAY ----------------
+
+            st.markdown(
+                f"""
+                <div style="
+                    background:#ffffff;
+                    color:#0f172a;
+                    border:1px solid #e2e8f0;
+                    border-radius:18px;
+                    padding:24px;
+                    margin-top:18px;
+                    margin-bottom:20px;
+                    box-shadow:0 8px 24px rgba(15,23,42,0.08);
+                ">
+
+                    <h3 style="
+                        color:#0f172a !important;
+                        margin-top:0;
+                        margin-bottom:18px;
+                    ">
+                        🤖 AI Evaluation
+                    </h3>
+
+                    <div style="
+                        color:#0f172a !important;
+                        font-size:16px;
+                        line-height:1.8;
+                    ">
+                        {result.replace(chr(10), '<br>')}
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
     if next_q:
         if len(st.session_state.results) <= q_no:
@@ -665,6 +696,7 @@ if st.session_state.interview_started and not st.session_state.interview_complet
         else:
             if len(st.session_state.answers) <= q_no:
                 st.session_state.answers.append(st.session_state.answer_text)
+
             if q_no < total_questions - 1:
                 st.session_state.question_no += 1
                 st.session_state.answer_text = ""
