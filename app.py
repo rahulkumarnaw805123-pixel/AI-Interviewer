@@ -654,25 +654,25 @@ if st.session_state.interview_started and not st.session_state.interview_complet
                 )
                 st.session_state.evaluation_spoken = q_no
 
-# ---------------- AI EVALUATION DISPLAY ----------------
+            # ---------------- AI EVALUATION DISPLAY ----------------
 
-with st.container(border=True):
+            with st.container(border=True):
 
-    st.markdown(
-        """
-        <h3 style="
-            color:#0f172a !important;
-            margin-top:0;
-            margin-bottom:18px;
-        ">
-            🤖 AI Evaluation
-        </h3>
-        """,
-        unsafe_allow_html=True
-    )
+                st.markdown(
+                    """
+                    <h3 style="
+                        color:#0f172a !important;
+                        margin-top:0;
+                        margin-bottom:18px;
+                    ">
+                        🤖 AI Evaluation
+                    </h3>
+                    """,
+                    unsafe_allow_html=True
+                )
 
-    # Render AI response as normal Markdown
-    st.markdown(result)
+                # Render AI response as Markdown
+                st.markdown(result)
 
     if next_q:
         if len(st.session_state.results) <= q_no:
