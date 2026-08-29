@@ -5,3 +5,4 @@ pyttsx3
 python-dotenv
 reportlab
 google-genai
+edge-tts
