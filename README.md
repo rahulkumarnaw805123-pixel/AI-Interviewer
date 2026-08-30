@@ -122,4 +122,4 @@ AI-Interviewer/
 
 ## 🚀 Live Demo
 
-👉 [Try AI Interviewer Live](https://ai-interviewer-eje4hjgkvagvcqrf9lp3rc.streamlit.app/)
+https://ai-interviewer-eje4hjgkvagvcqrf9lp3rc.streamlit.app/
