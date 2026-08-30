@@ -103,7 +103,7 @@ AI-Interviewer/
 ├── questions.json
 ├── requirements.txt
 └── .gitignore```
----
+
 
 ## 🖥️ Application Screenshots
 
