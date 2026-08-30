@@ -102,7 +102,7 @@ AI-Interviewer/
 ├── app.py
 ├── questions.json
 ├── requirements.txt
-└── .gitignore
+└── .gitignore```
 ---
 
 ## 🖥️ Application Screenshots
